@@ -1,0 +1,14 @@
+/Control.class
+/EXMEM.class
+/Execute.class
+/IDEX.class
+/IFID.class
+/InstructionDecode.class
+/InstructionFetch.class
+/MEMWB.class
+/Main.class
+/Memory.class
+/Operation.class
+/Register.class
+/RegisterFile.class
+/WriteBack.class
