@@ -70,17 +70,14 @@ public class Register {
 	{
 		value = "0";
 	}
+
+	@Override
+	public String toString() {
+		return "Register [name=" + name + ", value=" + value + "]";
+	}
 	
 	/**
 	 * Returns a String representation of the register
 	 */
-	/*public String toString()
-	{
-		String r = Integer.toBinaryString(value);
-		while(r.length() < size)
-			r = "0" + r;
-		if(name != null)
-			r = name + ": " + r;
-		return r + " (DEC = "+value+", HEX = "+ Integer.toHexString(value) +")";
-	}*/
+	
 }

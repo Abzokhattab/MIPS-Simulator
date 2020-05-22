@@ -1,25 +1,24 @@
 public class Memory {
 // خلي بالك يسطه 
-	static String[] mem = new String[1024];
 	static  String address;
 	static String WriteData;
 	static String ReadData;
 	static String ALuMuxPC_Result ; 
 	static String	JumpAluMux_Result;
+
 	public static void main(String[] args) {
 		address = EXMEM.ALU_ResultOUT;
 		DataMem();
 		////////////////////////////////////////////// pc not in layer EXmem
-		ALuMuxPC_Result = ALuMuxPC( Integer.toBinaryString(IDEX.pc4OUT), EXMEM.Add_ResultOUT,
-				BranchAndZero(EXMEM.zero, EXMEM.BranchOUT));
-		/////////////// jumpppppppppppp
-		JumpAluMux_Result=JumpAluMux(InstructionDecode.jumpAdd, ALuMuxPC_Result, InstructionDecode.cont.Jump);
+
 		
-		
-		System.out.println("Alu Res: "+EXMEM.ALU_ResultOUT);
-		System.out.println("mem read word : "+ReadData  );
-		System.out.println();
-		System.out.println();
+//		System.out.println("Alu Res: "+EXMEM.ALU_ResultOUT);
+//		System.out.println("mem read word : "+ReadData  );
+//		System.out.println();
+//		System.out.println();
+		System.out.println("--------- ------- ------- ----------------");
+		System.out.println("Memory");
+	//	System.out.println(ToString());
 
 		
 	}
@@ -42,14 +41,25 @@ public class Memory {
 			return MuxAddOutput;
 	}
 	public static void DataMem() {
+	//	System.out.println(address);
 		int temp = Integer.parseInt(address, 2);
 		if (EXMEM.MemwriteOUT ) {
 			WriteData=EXMEM.readData2OUT;
-			mem[temp] = WriteData;
-			ReadData = mem[temp];
+			Main.mem[temp] = WriteData;
+			ReadData = Main.mem[temp];
 		}
 		if (EXMEM.MemReadOUT ) {
-			ReadData = mem[temp];
+			ReadData = Main.mem[temp];
 		}
 	}
+
+
+public static String ToString() {
+	return "MEMWB [MemtoReg=" + MEMWB.MemtoReg + ", RegWrite=" + MEMWB.RegWrite
+			+ ", ReadData=" + MEMWB.ReadData + ", ALU_Result=" + MEMWB.ALU_Result
+			+ ", MUX=" + MEMWB.MUX + ", MemtoRegOUT=" + MEMWB.MemtoRegOUT
+			+ ", RegWriteOUT=" + MEMWB.RegWriteOUT + ", ReadDataOUT="
+			+ MEMWB.ReadDataOUT + ", ALU_ResultOUT=" + MEMWB.ALU_ResultOUT
+			+ ", MUXOUT=" + MEMWB.MUXOUT + "]";
+}
 }

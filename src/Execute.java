@@ -1,16 +1,21 @@
 public class Execute {
-	static String Foperand;
-	static String Soperand;
+	static String Foperand;//= "00000000000000000000000000000000";
+	static String Soperand;//="00000000000000000000000000000000";
 	static Operation operation;
-	static String ALUresult;
+	static String ALUresult;//="00000000000000000000000000000000";
 	static boolean zero;
 	static int pc;
 	static String ADD_SHIFTED_INPUT;
 	static String addresult ;
-
+	static String writeReg ; 
 	public static void main(String[] args) {
 
+	
+		writeReg = InstructionDecode.rsMuxrd(IDEX.rdOUT, IDEX.rtOUT, IDEX.RegDstOUT);
+
+		
 		pc = IDEX.pc4OUT;
+	//	System.out.println(" "+IDEX.ImmediateOUT);
 		ADD_SHIFTED_INPUT = ShiftLeft(IDEX.ImmediateOUT);
 		ADD();
 		
@@ -18,15 +23,20 @@ public class Execute {
 		MUX(IDEX.ALUSrcOUT);
 		Foperand = IDEX.readData1OUT;
 		ALU();
+//
+//		System.out.println("REadDATA 2 "+Soperand);
+//
+//		
+//		System.out.println("Zero flag: "+zero);
+////		System.out.println("branch Add :"+);
+		System.out.println("--------- ------- ------- ----------------");
+		System.out.println("Execute");
+	//	System.out.println(ToString());
 
-		
-		
-		System.out.println("Zero flag: "+zero);
-//		System.out.println("branch Add :"+);
 	}
 
 	public static void ALU() {
-		System.out.println(Foperand);
+	//	System.out.println(Foperand);
 		int f1 = Integer.parseInt(Foperand, 2);
 		int f2 = Integer.parseInt(Soperand, 2);
 		int r = 0;
@@ -59,6 +69,7 @@ public class Execute {
 		}
 
 		ALUresult = Integer.toBinaryString(r);
+	//	System.out.println("ALU RERASRSADA "+ALUresult);
 
 	}
 
@@ -107,7 +118,20 @@ public class Execute {
 		int decimal = Integer.parseInt(inst, 2);
 		return Integer.toBinaryString(decimal << 2);
 	}
-
+	public static String ToString() {
+		return "EXMEM [readData2=" + EXMEM.readData2 + ", ALU_Result=" + EXMEM.ALU_Result
+				+ ", Add_Result=" + EXMEM.Add_Result + ", zero=" + zero + ", MUX="
+				+ EXMEM.MUX + ", JumpAdd=" + EXMEM.JumpAdd + ", Jump=" + EXMEM.Jump + ", Branch="
+				+ EXMEM.Branch + ", MemRead=" + EXMEM.MemRead + ", MemtoReg=" + EXMEM.MemtoReg
+				+ ", Memwrite=" +EXMEM. Memwrite + ", RegWrite=" + EXMEM.RegWrite
+				+ ", JumpOUT=" + EXMEM.JumpOUT + ", BranchOUT=" + EXMEM.BranchOUT
+				+ ", MemReadOUT=" + EXMEM.MemReadOUT + ", MemtoRegOUT=" + EXMEM.MemtoRegOUT
+				+ ", MemwriteOUT=" + EXMEM.MemwriteOUT + ", RegWriteOUT="
+				+ EXMEM.RegWriteOUT + ", JumpAddOUT=" + EXMEM.JumpAddOUT
+				+ ", readData2OUT=" + EXMEM.readData2OUT + ", ALU_ResultOUT="
+				+ EXMEM.ALU_ResultOUT + ", Add_ResultOUT=" + EXMEM.Add_ResultOUT
+				+ ", zeroOUT=" +EXMEM. zeroOUT + ", MUXOUT=" + EXMEM.MUXOUT + "]";
+	}
 
 	// public static int ALuMuxPC (int pcRes ,int AluResult, boolean input ){
 	// if (input )return AluResult;

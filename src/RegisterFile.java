@@ -8,8 +8,32 @@ public class RegisterFile {
 	public RegisterFile()
 	{
 		registers = new Register[32];
-		for(int i = 0; i < 32; ++i)
+		int c3= 0; 
+		int c4 =0 ;
+		int c5=0 ;
+		int c6 =0 ;
+		int c7 =0 ;
+
+		for(int i = 0; i < 32; ++i){
 			registers[i] = new Register(32);
+			if (i==0)registers[i].setName("$zero");
+			if (i==1)registers[i].setName("$at");
+			if (i>=2&&i<=3){registers[i].setName("$v"+c3); c3++;}
+			if (i>=4&&i<=7){registers[i].setName("$a"+c4);  c4++;}
+			if (i>=8&&i<=15){registers[i].setName("$t"+c5);  c5++;}
+			if (i>=16&&i<=23){registers[i].setName("$s"+c6);  c6++;}
+			if (i==24){registers[i].setName("t8");}
+			if (i==25){registers[i].setName("t9");}
+			if (i>=26&&i<=27){registers[i].setName("$k"+c7);  c7++;}
+			if (i==28){registers[i].setName("$gp");}
+			if (i==29){registers[i].setName("$sp");}
+			if (i==30){registers[i].setName("$fp");}
+			if (i==31){registers[i].setName("$ra");}
+
+
+
+
+		}
 	}
 	
 	/**

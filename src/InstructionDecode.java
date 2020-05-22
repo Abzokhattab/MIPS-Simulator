@@ -6,65 +6,87 @@ public class InstructionDecode {
 	static String Readreg1;
 	static String Readreg2;
 	static String WriteData;
-	static String ReadData1;
-	static String ReadData2;
-	static Control cont;
+	static String ReadData1;//="00000000000000000000000000000000";
+	static String ReadData2;//="00000000000000000000000000000000";
+	static Control cont = new Control();
 	static String format;
 	static String shamt;
 	static String func;
 	static String address;
 	static String Operation;
 	static String AluOperation;
-	static int pc;
-	static String offsetOimmediate;
+	static int pc ;
+	static String offsetOimmediate;//="00000000000000000000000000000000";
 	static String opcode;
 	static String jumpAdd;
 
 	public static void main(String[] args) {
+		
 		cont = new Control();
 		ID(IFID.instOUT);
 
 		cont.parse(opcode);
 		pc = IFID.pc4OUT; 
-		writeReg = rsMuxrd(rd, rt, cont.RegDst);
 		Readreg1 = rs;
 		Readreg2 = rt;
 		ReadData1 = (String) ((Register) Main.RegFile.readRegister(Readreg1))
 				.getValue();
 		ReadData2 = (String) ((Register) Main.RegFile.readRegister(Readreg2))
 				.getValue();
+	//	System.out.println("REadDATA 2 "+ReadData2);
 
 		extend();
-
-		String pcdivided = pcDivide(Integer.toBinaryString(pc));
-		jumpAdd = pcdivided + ShiftLeft(address);
+	//	System.out.println(rd+" "+rt +" "+offsetOimmediate);
+		String pcdivided = pcDivide(pc);
+		String s = ShiftLeft(address); 
+		jumpAdd = pcdivided + s;
 
 		
 	
 
 		
 		
-		System.out.println("Next pc : "+pc);
-		System.out.println("Next pc : "+IFID.instOUT);
-		System.out.println("operation : " + Operation);
-		System.out.println("opcode    " + "|" + "rs   " + "|" + "rt   " + "|"
-				+ "Imm" + "       ");
-		System.out.println(opcode + "|" + rs + "|" + rt + "|"
-				+ offsetOimmediate);
-
+//		System.out.println("Next pc : "+pc);
+//		System.out.println("Next pc : "+IFID.instOUT);
+//		System.out.println("operation : " + Operation);
+//		System.out.println("opcode    " + "|" + "rs   " + "|" + "rt   " + "|"
+//				+ "Imm" + "       ");
+//		System.out.println(opcode + "|" + rs + "|" + rt + "|"
+//				+ offsetOimmediate);
 		System.out.println("--------- ------- ------- ----------------");
-		//
-		System.out.println("Read Data 1: " + ReadData1);
+		System.out.println("Decode");
+	//	System.out.println(ToString());
 
-		System.out.println("Read Data 2: " + ReadData2);
-		System.out.println("Sign Extend: "+offsetOimmediate );
-		System.out.println("Rt: " +rt+ "  "+"Rd : "+rd);
-		System.out.println("MemtoReg : "+cont.MemtoReg+", RegWrite: "+cont.RegWrite);
-		System.out.println("Memread : "+cont.MemRead+", MemWrite: "+cont.Memwrite+", Branch: "+cont.Branch);
-		System.out.println("regDst : "+cont.RegDst+", AluOP: "+cont.ALUOp+", AluSRc: "+cont.ALUSrc);
-
+//		//
+//		System.out.println("Read Data 1: " + ReadData1);
+//
+//		System.out.println("Read Data 2: " + ReadData2);
+//		System.out.println("Sign Extend: "+offsetOimmediate );
+//		System.out.println("Rt: " +rt+ "  "+"Rd : "+rd);
+//		System.out.println("MemtoReg : "+cont.MemtoReg+", RegWrite: "+cont.RegWrite);
+//		System.out.println("Memread : "+cont.MemRead+", MemWrite: "+cont.Memwrite+", Branch: "+cont.Branch);
+//		System.out.println("regDst : "+cont.RegDst+", AluOP: "+cont.ALUOp+", AluSRc: "+cont.ALUSrc);
+//		
+		
 	}
-
+	public static String ToString() {
+		return "IDEX [readData1=" + IDEX.readData1 + ", readData2=" + IDEX.readData2
+				+ ", Immediate=" + IDEX.Immediate + ", rt=" + IDEX.rt + ", rd=" + IDEX.rd
+				+ ", JumpAdd=" + IDEX.JumpAdd + ", RegDst=" + IDEX.RegDst + ", Jump="
+				+ IDEX.Jump + ", Branch=" + IDEX.Branch + ", MemRead=" + IDEX.MemRead
+				+ ", MemtoReg=" + IDEX.MemtoReg + ", Memwrite=" + IDEX.Memwrite
+				+ ", ALUOp=" + IDEX.ALUOp + ", ALUSrc=" + IDEX.ALUSrc + ", RegWrite="
+				+ IDEX.RegWrite + ", pc4=" + IDEX.pc4 + ", JumpAddOUT=" + IDEX.JumpAddOUT
+				+ ", ImmediateOUT=" + IDEX.ImmediateOUT + ", rtOUT=" + IDEX.rtOUT
+				+ ", rdOUT=" + IDEX.rdOUT + ", RegDstOUT=" + IDEX.RegDstOUT
+				+ ", JumpOUT=" + IDEX.JumpOUT + ", BranchOUT=" + IDEX.BranchOUT
+				+ ", MemReadOUT=" + IDEX.MemReadOUT + ", MemtoRegOUT=" + IDEX.MemtoRegOUT
+				+ ", MemwriteOUT=" + IDEX.MemwriteOUT + ", ALUOpOUT=" + IDEX.ALUOpOUT
+				+ ", ALUSrcOUT=" + IDEX.ALUSrcOUT + ", RegWriteOUT=" + IDEX.RegWriteOUT
+				+ ", readData1OUT=" +IDEX. readData1OUT + ", readData2OUT="
+				+ IDEX.readData2OUT + ", pc4OUT=" + IDEX.pc4OUT + "]";
+	}
+	
 	public static void extend() {
 		if (offsetOimmediate.charAt(0) == '0') {
 			for (int i = 0; i < 16; i++) {
@@ -78,6 +100,7 @@ public class InstructionDecode {
 	}
 
 	public static void ID(String Instruction) {
+//System.out.println(Instruction);
 		opcode = Instruction.substring(0, 6);
 		rs = Instruction.substring(6, 11);
 		rt = Instruction.substring(11, 16);
@@ -177,30 +200,33 @@ public class InstructionDecode {
 	}
 
 	public static void write(String data) {
-		if (InstructionDecode.cont.RegWrite) {
+		if (MEMWB.RegWriteOUT) {
 			InstructionDecode.WriteData = data;
-			Main.RegFile.writeRegister(InstructionDecode.writeReg,
+			Main.RegFile.writeRegister(MEMWB.MUXOUT,
 					InstructionDecode.WriteData);
 
 		}
 	}
 
-	public static String pcDivide(String pc) {
-		String temp = "";
+	public static String pcDivide(int pc) {
+		String p = String.format("%32s", Integer.toBinaryString(pc)).replace(' ', '0');
+String temp = "";
 		for (int i = 0; i < 4; i++)
-			temp = temp + pc.charAt(0);
-		return temp;
-	}
+		{
+			temp = temp + p.charAt(i);
+}
+		return ( temp);
+}
 
 	public static String ShiftLeft(String inst) {
 		int decimal = Integer.parseInt(inst, 2);
-		return Integer.toBinaryString(decimal << 2);
-	}
+		String s= String.format("%28s", Integer.toBinaryString(decimal << 2)).replace(' ', '0');
+	return s ;}
 	/*
 	 * public static void WriteregMUX(boolean RegDst, String input1 , String
 	 * input2 ){ if (RegDst)
 	 * 
-	 * }
+	 * }s
 	 */
 
 }
