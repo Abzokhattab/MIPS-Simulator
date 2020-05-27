@@ -20,11 +20,11 @@ public class InstructionFetch {
 //
 // 	
 //		}else {
-		 String ALuMuxPC_Result = Memory.ALuMuxPC( Integer.toBinaryString(pc), EXMEM.Add_ResultOUT,
+		 String ALuMuxPC_Result = Memory.ALuMuxPC( Integer.toBinaryString(pc*4), EXMEM.Add_ResultOUT,
 				Memory.BranchAndZero(EXMEM.zeroOUT, EXMEM.BranchOUT));
 		/////////////// jumpppppppppppp
 		String JumpAluMux_Result=Memory.JumpAluMux(EXMEM.JumpAddOUT, ALuMuxPC_Result, EXMEM.JumpOUT);
-		pc =Integer.parseInt(JumpAluMux_Result, 2);
+		pc =Integer.parseInt(JumpAluMux_Result, 2)/4;
 
  try {
 		inst = IF(pc, IM);

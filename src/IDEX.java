@@ -86,7 +86,9 @@ public class IDEX {
 
 	public static String ToString() {
 		return "IDEX [readData1=" + readData1 +"\n"+ "readData2=" + readData2+"\n"
-				+ "Sign Extend =" + Immediate +"\n"+ "rt=" + rt +"\n"+ "rd=" + rd+"\n"
+				+ "Sign Extend =" + Immediate +"\n"+
+				"Next Pc: "+String.format("%32s",Integer.toBinaryString(pc4*4)).replace(' ', '0') +"\n"+
+				"rt=" + rt +"\n"+ "rd=" + rd+"\n"
 				+ "WB controls: "+"MemtoReg=" + MemtoReg +",RegWrite: "+RegWrite+"\n"+
 				"MEM controls: MemRead: "+ MemRead+", Memwrite=" + Memwrite+", Branch=" + Branch +"\n"
 				+"EX controls: RegDST: "+RegDst+",ALUOp: "+ALUOp+",ALUSrc: "+ALUSrc;

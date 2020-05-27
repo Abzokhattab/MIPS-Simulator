@@ -18,7 +18,8 @@ public class Converter {
 		String[] split_input = remove_comma.split("\\s");
 		// System.out.print(split_input[1]);
 		instructions(split_input[0], split_input);
-	//	System.out.println(split_input);
+		for (int i =0;i<=split_input.length;i++)
+		System.out.println(split_input[0]);
 	}
 	
 	protected static void instructions(String op, String[] data) {
@@ -63,6 +64,7 @@ public class Converter {
 	protected static void rType(String rd, String rs, String rt, String sa, String fn) {
 		//op code
 		//System.out.printf("000000 %05d %05d %05d %s %s",  registerNumber(rs),  registerNumber(rt),  registerNumber(rd), sa, fn);
+		System.out.println(rd+""+""+rs+""+rt+""+sa+""+fn);
 
 r = String.format("000000 %05d %05d %05d %s %s",  registerNumber(rs),  registerNumber(rt),  registerNumber(rd), sa, fn);
 	//	System.out.println(r);
@@ -76,6 +78,7 @@ r = String.format("000000 %05d %05d %05d %s %s",  registerNumber(rs),  registerN
 	}
 	
 	protected static void iType(String opc, String rs, String rt, String data) {
+		System.out.println(opc+""+""+rs+""+rt+""+data);
 		//op code
 r=String.format("%s %05d %05d %s", opc, registerNumber(rs), registerNumber(rt), Integer.toBinaryString(Integer.parseInt(data)));
 		

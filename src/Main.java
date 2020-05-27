@@ -13,7 +13,7 @@ public class Main {
 			"10001110000010010000000000000000",
 			"00000001010010110110000000100000" };
 			*/
-	static int i =0;
+	static int i =1;
 	static LinkedList<String> Inputs=new LinkedList<String>();
 	public static void main(String[] args) {
 
@@ -84,7 +84,7 @@ public class Main {
 //	/// Manual testsssssssss
 //	static String[] IM = { "00100000000010000000000000000101",
 //			"10001110000010010000000000000000",
-//			"00000001010010110110000000100000" };
+// 	"00000001010010110110000000100000","00000001101011100111100000100101","10101110001100100000000000000000","00010010000000000000000011111111" };
 //			
 //	static int i =0;
 //	static LinkedList<String> Inputs=new LinkedList<String>();
@@ -100,7 +100,7 @@ public class Main {
 //
 //		System.out.println(RegFile.toString());
 //
-//		 i = 0;
+//		 i = 1;
 //		while (InstructionFetch.p != null || InstructionFetch.firstTime
 //				|| IFID.pOUT != null || IDEX.pOUT != null || EXMEM.pOUT != null
 //				|| MEMWB.pOUT != null) {
@@ -140,4 +140,5 @@ public class Main {
 //				WriteBack.main(args);
 //		}
 //
+//}
 //}

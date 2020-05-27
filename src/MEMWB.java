@@ -42,7 +42,7 @@ public class MEMWB {
 }
 	public static String ToString() {
 		return	"ALU result :"+ALU_Result+"\n"
-				+"Memory word read "+ReadData
+				+"Memory word read "+ReadData+"\n"
 				+"rt/rd fileds :"+MUX+"\n"
 				+"WB controls : MemToReg :"+MemtoReg+" ,WriteReg: "+RegWrite;
 				

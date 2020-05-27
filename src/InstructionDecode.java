@@ -37,7 +37,7 @@ public class InstructionDecode {
 
 		extend();
 	//	System.out.println(rd+" "+rt +" "+offsetOimmediate);
-		String pcdivided = pcDivide(pc);
+		String pcdivided = pcDivide(pc*4);
 		String s = ShiftLeft(address); 
 		jumpAdd = pcdivided + s;
 
@@ -209,7 +209,7 @@ public class InstructionDecode {
 	}
 
 	public static String pcDivide(int pc) {
-		String p = String.format("%32s", Integer.toBinaryString(pc)).replace(' ', '0');
+			String p = String.format("%32s", Integer.toBinaryString(pc)).replace(' ', '0');
 String temp = "";
 		for (int i = 0; i < 4; i++)
 		{

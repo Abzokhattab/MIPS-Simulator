@@ -78,7 +78,7 @@ public class EXMEM {
 				+ "branch address :"+Add_Result+"\n"
 				///////////////
 				+ "ALU result : "+ALU_Result+"\n"
-				+ "register value to write mem :"+MUX+"\n"
+				+ "register value to write mem :"+readData2+"\n"
 				+"rt/rd: "+MUX+"\n"
 				+"WB controls: MemToReg: "+MemtoReg+" ,RegWrite: "+RegWrite+"\n"
 				+"Mem controls: MemRead: "+MemRead+" ,MemWrite: "+Memwrite+", Branch: "+Branch;

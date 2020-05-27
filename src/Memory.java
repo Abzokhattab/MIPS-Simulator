@@ -1,9 +1,9 @@
 public class Memory {
-// خلي بالك يسطه 
 	static  String address;
 	static String WriteData;
 	static String ReadData;
 	static String ALuMuxPC_Result ; 
+	
 	static String	JumpAluMux_Result;
 
 	public static void main(String[] args) {

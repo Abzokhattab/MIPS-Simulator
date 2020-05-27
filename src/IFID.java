@@ -25,7 +25,7 @@ public class IFID {
 	System.out.println(ToString());}
 		}
 	public static String ToString(){
-		return ("Next PC :"+IFID.pc4 +"\n"
+		return ("Next PC :"+String.format("%32s",Integer.toBinaryString( IFID.pc4*4 )).replace(' ', '0')+"\n"
 				+"Instruction : "+IFID.inst+"\n"
 				);
 				

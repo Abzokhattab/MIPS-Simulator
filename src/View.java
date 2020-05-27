@@ -99,8 +99,8 @@ public class View extends JFrame implements ActionListener {
 		contentPane.add(slider_1);
 		
 		txtrAndss = new JTextArea();
-		txtrAndss.setText("Sample inputs : \r\n\r\nand $s4, $s2, $t8\r\nadd $s4, $s2, $t8\r\nsub $s4, $s2, $t7\r\n\r\nfor more Manual testing use class Main and delete the comments and comment the remaing parts ");
-		txtrAndss.setBounds(341, 479, 504, 131);
+		txtrAndss.setText("Sample inputs : \r\n\r\nand $s4, $s2, $t8\r\nadd $s4, $s2, $t8\r\nsub $s4, $s2, $t7\r\n\r\nfor more Manual testing use class Main and delete the comments and\r\n comment the remaing parts instead");
+		txtrAndss.setBounds(341, 479, 504, 156);
 		contentPane.add(txtrAndss);
 		btnConvert.addActionListener((ActionListener) this);
 

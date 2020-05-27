@@ -109,7 +109,8 @@ public class Execute {
 
 	public static void ADD() {
 		int temp = Integer.parseInt(ADD_SHIFTED_INPUT, 2);
-		addresult = Integer.toBinaryString(pc + temp);
+		addresult = String.format("%32s",Integer.toBinaryString(pc*4 + temp)).replace(' ', '0');
+		 
 
 				
 	}
